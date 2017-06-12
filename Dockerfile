@@ -34,7 +34,8 @@ RUN apt-get update && \
     php7.0-xml \
     postfix \
     postgresql-client \
-    unzip
+    unzip \
+    dos2unix
 
 # deploy app
 RUN curl -L -s -o /tmp/restyaboard.zip https://github.com/RestyaPlatform/board/releases/download/${RESTYABOARD_VERSION}/board-${RESTYABOARD_VERSION}.zip && \
@@ -72,5 +73,6 @@ RUN apt-get autoremove -y --purge && \
 # entrypoint
 COPY docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
+RUN dos2unix /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
 CMD ["start"]
