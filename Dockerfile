@@ -71,7 +71,8 @@ RUN apt-get autoremove -y --purge && \
     apt-get clean
 
 # entrypoint
-COPY docker-entrypoint.sh /
+#COPY docker-entrypoint.sh /
+ADD https://raw.githubusercontent.com/Alustrat/homegrown-restyaboard/master/docker-entrypoint.sh /
 RUN chmod +x /docker-entrypoint.sh
 RUN dos2unix /docker-entrypoint.sh
 ENTRYPOINT ["/docker-entrypoint.sh"]
